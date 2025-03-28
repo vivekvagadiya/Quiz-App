@@ -1,50 +1,77 @@
-body{
-    background-color: black;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-.show{
-    margin: auto;
-    width: 400px;
-    height: auto;
-    /* background-color: bisque; */
+body {
+    background-color: #121212;
+    font-family: 'Poppins', sans-serif;
     color: white;
-    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
 }
 
-button{
-    width: 100px;
-    height: 30px;
-    background-color: green;
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white    ;
-}
-button:disabled{
-    background-color: rgb(86, 81, 81);
-}
-button:hover{
-    background-color: rgb(11, 56, 11);
-}
-.start-quiz{
-    width: 100px;
-    height: auto;
-    margin: auto;   
-}
-p{
-    color: white;
-}
-    input[type=radio]{
-        width: 20px;
-        height: 20px;
-        border-radius: 0%;
-        background-color: aqua;
-    }
-/* .option-select{
-    width: 200px;
-    height: 40px;
-    background-color: aqua;
-    border: 1px solid white;
+.show {
+    width: 400px;
+    padding: 20px;
+    background-color: #1e1e1e;
     border-radius: 10px;
-    margin: auto;
-    margin-top: 5px;
-} */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+button {
+    width: 120px;
+    height: 40px;
+    background-color: #00c853;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #009624;
+}
+
+button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+.start-quiz {
+    text-align: center;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.start-quiz p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.question-para {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #00c853;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.score-show {
+    font-size: 20px;
+    font-weight: bold;
+    color: #00c853;
+    margin-top: 10px;
+}

@@ -1,0 +1,50 @@
+body{
+    background-color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.show{
+    margin: auto;
+    width: 400px;
+    height: auto;
+    /* background-color: bisque; */
+    color: white;
+    background-color: black;
+}
+
+button{
+    width: 100px;
+    height: 30px;
+    background-color: green;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white    ;
+}
+button:disabled{
+    background-color: rgb(86, 81, 81);
+}
+button:hover{
+    background-color: rgb(11, 56, 11);
+}
+.start-quiz{
+    width: 100px;
+    height: auto;
+    margin: auto;   
+}
+p{
+    color: white;
+}
+    input[type=radio]{
+        width: 20px;
+        height: 20px;
+        border-radius: 0%;
+        background-color: aqua;
+    }
+/* .option-select{
+    width: 200px;
+    height: 40px;
+    background-color: aqua;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 5px;
+} */

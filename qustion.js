@@ -1,48 +1,48 @@
 let question = [
     {
         id: '1',
-        quest: 'this is question 1',
-        op1: 'a',
-        op2: 'b',
-        op3: 'c',
-        op4: 'd',
-        ans: 'a'
+        quest: '1. Which of the following Greek Explorers is considered to have left the earliest account of India?',
+        op1: 'Herodotus',
+        op2: 'Ctesias',
+        op3: 'Scylax',
+        op4: 'Hippalus',
+        ans: ['Scylax', 'Ctesias']
     },
     {
         id: '2',
-        quest: 'this is question 2',
-        op1: 'a',
-        op2: 'b',
-        op3: 'c',
-        op4: 'd',
-        ans: 'a'
+        quest: '2. Which among the following two dynasties of the Northern India confronted with the Rashtrakutas?',
+        op1: 'Varahmihira',
+        op2: 'Aryabhatta',
+        op3: 'Ramanujan',
+        op4: 'Baudhayan',
+        ans: ['Baudhayan']
     },
     {
         id: '3',
-        quest: 'this is question 3',
-        op1: 'a',
-        op2: 'b',
-        op3: 'c',
-        op4: 'd',
-        ans: 'a'
+        quest: '3. Which King took the title of Vatapikonda?',
+        op1: 'Narasimhavarman-I',
+        op2: 'Simhavishnu',
+        op3: 'Mahendravarman-I',
+        op4: 'Nandivarman-II',
+        ans: ['Mahendravarman-I', 'Nandivarman-II']
     },
     {
         id: '4',
-        quest: 'this is question 4',
-        op1: 'a',
-        op2: 'b',
-        op3: 'c',
-        op4: 'd',
-        ans: 'a'
+        quest: '4. In which year, Ashoka invaded Kalinga?',
+        op1: '261-BC',
+        op2: '235-BC',
+        op3: '285-BC',
+        op4: '275-BC',
+        ans: ['275-BC']
     },
     {
         id: '5',
-        quest: 'this is question 5',
-        op1: 'a',
-        op2: 'b',
-        op3: 'c',
-        op4: 'd',
-        ans: 'a'
+        quest: '5. Which among the following rulers of the Chola Empire conquered the Maldives during his regime ?',
+        op1: 'Raja Raja Chola I',
+        op2: 'Rajendra Chola',
+        op3: 'Kulothunga Chola I',
+        op4: 'Vikrama Chola',
+        ans: ['Vikrama', 'Kulothunga']
     },
     // {
     //     id: '6',
@@ -101,62 +101,97 @@ function loadQuestion(c) {
     let quest = question[c];
 
     // quest.map((item, index) => {
-        if (c === question.length) {
-            review()
-        }
+    if (c === question.length) {
+        review()
+    }
+    if (c < question.length ) {
+
         html = `
-        <div >
         <p>Q${c + 1} out of ${question.length}</p>
         <div class="question-set-${quest.id}" >
         <p class="question-para">${quest.quest}</p>
-        <input type="radio" data-q-id=${quest.id} data-question-option=${quest.op1} name="option-id-${quest.id}" <span>${quest.op1}</span><br>
-        <input type="radio" data-q-id=${quest.id} data-question-option=${quest.op2} name="option-id-${quest.id}" <span>${quest.op2}</span><br>
-        <input type="radio" data-q-id=${quest.id} data-question-option=${quest.op3} name="option-id-${quest.id}" <span>${quest.op3}</span><br>
-        <input type="radio" data-q-id=${quest.id} data-question-option=${quest.op4} name="option-id-${quest.id}" <span>${quest.op4}</span><br>
+        <input type="checkbox" data-q-id=${quest.id} data-question-option=${quest.op1} name="option-id-${quest.id}" <span>${quest.op1}</span><br>
+        <input type="checkbox" data-q-id=${quest.id} data-question-option=${quest.op2} name="option-id-${quest.id}" <span>${quest.op2}</span><br>
+        <input type="checkbox" data-q-id=${quest.id} data-question-option=${quest.op3} name="option-id-${quest.id}" <span>${quest.op3}</span><br>
+        <input type="checkbox" data-q-id=${quest.id} data-question-option=${quest.op4} name="option-id-${quest.id}" <span>${quest.op4}</span><br>
+
         </div>
         <p class="score-show"></p>
         <div data-question-id=${quest.id} class="buttons">
-        <button class="btn" onclick="selectOption(${quest.id})">submit</button>
+        <button class="btn" onclick="selectOption(${quest.id})">${count === question.length - 1 ? 'submit' : 'next'}</button>
         
-        </div>
         </div>
         `
         document.querySelector('.show').innerHTML = html;
-    // });
+        // });
+    }
 
 }
+// <button class="btn" onclick="handlePage('pre')" ${count === 0 ? 'disabled' : ''}>Previous</button>
+// <button class="btn" onclick="handlePage('next')" ${count === question.length - 1 ? 'disabled' : ''}>Next</button>
 // <button class="next-btn" onclick="loadQuestion(${c+=1})">Next</button>
 // <button class="pre-btn" onclick="handlePage('pre')">Previous</button>
 function handlePage(string) {
     if (string === 'pre' && count > 0) {
-        loadQuestion(count--)
+        count--;
+        loadQuestion(count)
     }
     if (string === "next" && count < question.length) {
-        loadQuestion(count++)
+        count++;
+        loadQuestion(count)
     }
 }
+let selectedOptions = [];
 function selectOption(id) {
+    let passQuestion;
     document.querySelectorAll(`.question-set-${id} input`).forEach((item) => {
         if (item.checked === true) {
             let getId = item.dataset.qId;
             let getOption = item.dataset.questionOption;
-            console.log(getOption)
-            // console.log('selected')
             let getQuestion = question.find(findItem => findItem.id === getId);
-            console.log(getQuestion)
-            if (item.checked === true && getOption === getQuestion.ans) {
-                score++;
-                console.log(getOption === getQuestion.ans)
-                console.log('score', score)
-                // console.log(typeof getId)
-            }
-            if(count<question.length){
-                loadQuestion(count += 1)
-            }
+            passQuestion = getQuestion
+            // console.log('getoption',getOption)
+            // console.log(id)
+            selectedOptions.push(getOption)
+            // console.log('selected options array',selectedOptions)
+            // console.log(getQuestion)
+            // if (getOption === getQuestion.ans) {
+            // console.log(getQuestion.ans.includes(getOption))
+
             // document.querySelector('.score-show').innerHTML = 'Score is',score;
         }
     })
+    checkResult(selectedOptions, passQuestion)
+    if (count < question.length) {
+        count += 1;
+        loadQuestion(count)
+    }
 }
+
+function checkResult(res, getQuestion) {
+    // if(res.ans.includes(getQuestion)){
+    //     score++;
+    //     // console.log(typeof getId)
+    // }
+    let array = [];
+    console.log('selected option',res)
+    console.log('ans array',getQuestion.ans)
+    for (let i = 0; i < res.length; i++) {
+        if (!getQuestion.ans.includes(res[i])) {
+            console.log('wrong answer');
+            array[i] = 'false'
+        } else {
+            array[i] = 'true';
+        }
+    }
+    selectedOptions = [];
+    if (!array.includes('false')) {
+        score++;
+    }
+    // console.log(array)
+    console.log('score', score)
+}
+
 
 function startQuiz() {
     let start = document.querySelector('.start');
@@ -168,44 +203,8 @@ function startQuiz() {
 startQuiz();
 
 function review() {
-    if (score <= 2) {
-        document.body.innerHTML = `
-        <p>your score is ${score} </p>
-        <p>Needs improvement</p>
-        `
-    }
-    else {
-        document.body.innerHTML = `
-        <p>your score is ${score} </p>
-        <p>very well performance</p>
-        `
-    }
+    document.querySelector('.show').innerHTML = `
+   <p>Your Score is ${score}</p>
+   <p>${score <= 2 ? 'Needs Imorovements' : 'Well Score'}</p>
+   `
 }
-
-
-// ${`<button onclick="loadQuestion(${c += 1})">Next</button>`
-// }
-// function loadQuestion() {
-//     let html = '';
-
-//     question.map((item, index) => {
-//         console.log(item);
-//         html += `
-//         <div >
-//         <div class="question-set-${item.id}" ${index}>
-//         <p class="question-para">${item.quest}</p>
-//         <input type="radio" data-q-id=${item.id} data-question-option=${item.op1} name="option-id-${item.id}" <span>${item.op1}</span><br>
-//         <input type="radio" data-q-id=${item.id} data-question-option=${item.op2} name="option-id-${item.id}" <span>${item.op2}</span><br>
-//         <input type="radio" data-q-id=${item.id} data-question-option=${item.op3} name="option-id-${item.id}" <span>${item.op3}</span><br>
-//         <input type="radio" data-q-id=${item.id} data-question-option=${item.op4} name="option-id-${item.id}" <span>${item.op4}</span><br>
-//     </div>
-//      <div data-question-id=${item.id}>
-//         <button class="btn" onclick="selectOption(${item.id})">submit</button>
-//         <button>next</button>
-//     </div>
-//     </div>
-//         `
-//     });
-
-//     document.querySelector('.show').innerHTML = html;
-// }

@@ -92,19 +92,16 @@ let question = [
 ]
 let score = 0;
 let count = 0;
-// console.log('global')
 function loadQuestion(c) {
     let html = '';
-    // let c=count;
     console.log(c);
 
     let quest = question[c];
 
-    // quest.map((item, index) => {
     if (c === question.length) {
         review()
     }
-    if (c < question.length ) {
+    if (c < question.length) {
 
         html = `
         <p>Q${c + 1} out of ${question.length}</p>
@@ -127,10 +124,7 @@ function loadQuestion(c) {
     }
 
 }
-// <button class="btn" onclick="handlePage('pre')" ${count === 0 ? 'disabled' : ''}>Previous</button>
-// <button class="btn" onclick="handlePage('next')" ${count === question.length - 1 ? 'disabled' : ''}>Next</button>
-// <button class="next-btn" onclick="loadQuestion(${c+=1})">Next</button>
-// <button class="pre-btn" onclick="handlePage('pre')">Previous</button>
+
 function handlePage(string) {
     if (string === 'pre' && count > 0) {
         count--;
@@ -150,15 +144,8 @@ function selectOption(id) {
             let getOption = item.dataset.questionOption;
             let getQuestion = question.find(findItem => findItem.id === getId);
             passQuestion = getQuestion
-            // console.log('getoption',getOption)
-            // console.log(id)
-            selectedOptions.push(getOption)
-            // console.log('selected options array',selectedOptions)
-            // console.log(getQuestion)
-            // if (getOption === getQuestion.ans) {
-            // console.log(getQuestion.ans.includes(getOption))
 
-            // document.querySelector('.score-show').innerHTML = 'Score is',score;
+            selectedOptions.push(getOption)
         }
     })
     checkResult(selectedOptions, passQuestion)
@@ -169,13 +156,10 @@ function selectOption(id) {
 }
 
 function checkResult(res, getQuestion) {
-    // if(res.ans.includes(getQuestion)){
-    //     score++;
-    //     // console.log(typeof getId)
-    // }
+
     let array = [];
-    console.log('selected option',res)
-    console.log('ans array',getQuestion.ans)
+    console.log('selected option', res)
+    console.log('ans array', getQuestion.ans)
     for (let i = 0; i < res.length; i++) {
         if (!getQuestion.ans.includes(res[i])) {
             console.log('wrong answer');
